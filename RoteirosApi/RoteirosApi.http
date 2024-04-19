@@ -1,0 +1,6 @@
+@RoteirosApi_HostAddress = http://localhost:5233
+
+GET {{RoteirosApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

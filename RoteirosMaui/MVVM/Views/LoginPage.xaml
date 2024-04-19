@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoteirosMaui.MVVM.Views.LoginPage"
+             Title="LoginPage">
+    <VerticalStackLayout>
+
+        <Label Text="Log In" FontSize="Title" HorizontalOptions="Center" Margin="0,20,0,10"/>
+
+        <!-- Email Entry -->
+        <Label Text="Email:" />
+        <Entry Placeholder="Email" x:Name="EmailEntry" Text="{Binding Email }" />
+
+        <!-- Password Entry -->
+        <Label Text="Password:" />
+        <Entry Placeholder="Password" IsPassword="True" x:Name="PasswordEntry" Text="{Binding Password}" />
+
+
+        <Button Text="Log In" Command="{Binding LogInCommand }" HorizontalOptions="Center" Margin="0,20,0,0"/>
+
+        <Button Text="I don't have an Account, create One" Command="{Binding ChangeToRegisterCommand }" HorizontalOptions="Center" Margin="0,20,0,0"/>
+
+    </VerticalStackLayout>
+</ContentPage>
