@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoteirosMaui.MVVM.Views.LoadingPage"
+             Title="Roteiros MAUI"
+             >
+    <VerticalStackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center" 
+        Padding="20">
+        <Image
+        Source="roteiros_maui.png"
+        HeightRequest="185"
+        Aspect="AspectFit"
+        SemanticProperties.Description="Roteiros Maui Logo" />
+
+        <ActivityIndicator IsRunning="True"/>
+        <Label Text="Checking Authentication Status"/>
+    </VerticalStackLayout>
+</ContentPage>

@@ -12,21 +12,21 @@ namespace RoteirosMaui.Abstractions
     public class BaseRepository<T> : IBaseRepository<T> where T : TableData, new()
     {
 
-        SQLiteConnection connection;
+        SQLiteConnection Connection;
         public string StatusMessage { get; set; }
 
         public BaseRepository()
         {
-            connection = new SQLiteConnection(Constants.DataBasePath, Constants.Flags);
+            Connection = new SQLiteConnection(Constants.DataBasePath, Constants.Flags);
 
             //Apenas corre se a tabela não existir
-            connection.CreateTable<T>();
+            Connection.CreateTable<T>();
         }
         public void DeleteItem(T item)
         {
             try
             {
-                connection.Delete(item,true);
+                Connection.Delete(item,true);
             }
             catch (Exception ex)
             {
@@ -37,14 +37,14 @@ namespace RoteirosMaui.Abstractions
 
         public void Dispose()
         {
-            connection.Close();
+            Connection.Close();
         }
 
         public T GetItem(int id)
         {
             try
             {
-                return connection.Table<T>().FirstOrDefault(x => x.Id == id);
+                return Connection.Table<T>().FirstOrDefault(x => x.Id == id);
             }
             catch (Exception ex)
             {
@@ -57,7 +57,7 @@ namespace RoteirosMaui.Abstractions
         {
             try
             {
-                return connection.Table<T>().Where(predicate).FirstOrDefault();
+                return Connection.Table<T>().Where(predicate).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -70,7 +70,7 @@ namespace RoteirosMaui.Abstractions
         {
             try
             {
-                return connection.Table<T>().ToList();
+                return Connection.Table<T>().ToList();
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace RoteirosMaui.Abstractions
         {
             try
             {
-                return connection.Table<T>().Where(predicate).ToList();
+                return Connection.Table<T>().Where(predicate).ToList();
             }
             catch (Exception ex)
             {
@@ -100,13 +100,13 @@ namespace RoteirosMaui.Abstractions
                 if (item.Id != 0)
                 {
                     result =
-                         connection.Update(item);
+                         Connection.Update(item);
                     StatusMessage =
                          $"{result} row(s) updated";
                 }
                 else
                 {
-                    result = connection.Insert(item);
+                    result = Connection.Insert(item);
                     StatusMessage =
                          $"{result} row(s) added";
                 }
@@ -121,14 +121,14 @@ namespace RoteirosMaui.Abstractions
 
         public void SaveItemWithChildren(T item, bool recursive = false)
         {
-           connection.InsertWithChildren(item, recursive);
+           Connection.InsertWithChildren(item, recursive);
         }
 
         public List<T> GetItemsWithChildren()
         {
             try
             {
-                return connection.GetAllWithChildren<T>().ToList();
+                return Connection.GetAllWithChildren<T>().ToList();
             }
             catch (Exception ex)
             {

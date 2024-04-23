@@ -29,8 +29,8 @@ namespace RoteirosApi.Controllers
                 return await _context.Utilizadors.ToListAsync();
 
             }
-            return await _context.Utilizadors.Where(x => x.Email == Email).ToListAsync();
-
+            var x =  await _context.Utilizadors.Where(x => x.Email == Email).ToListAsync();
+            return x;
         }
 
         // GET: api/Utilizadores/5

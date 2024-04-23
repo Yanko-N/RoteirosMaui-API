@@ -21,6 +21,7 @@ namespace RoteirosMaui
             builder.Services.AddSingleton<BaseRepository<Trip>>();
             builder.Services.AddSingleton<BaseRepository<Spot>>();
             builder.Services.AddSingleton<ConnectionApi>();
+            builder.Services.AddSingleton<UserController>();
 
 
 

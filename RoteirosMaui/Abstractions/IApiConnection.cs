@@ -13,6 +13,8 @@ namespace RoteirosMaui.Abstractions
         string Url { get; set; }
 
         Task<bool> SaveItem(T item);
+        Task<bool> PutItem(T item);
+
         Task<T> GetItem(int id);
         Task<List<T>> GetItems();
         Task<bool> DeleteItem(T item);

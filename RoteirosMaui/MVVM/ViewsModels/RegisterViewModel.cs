@@ -1,6 +1,7 @@
 ﻿using PropertyChanged;
 using RoteirosMaui.Classes;
 using RoteirosMaui.MVVM.Models;
+using RoteirosMaui.MVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,6 @@ namespace RoteirosMaui.MVVM.ViewsModels
         public RegisterViewModel()
         {
 
-            //construtor
 
         }
         public ICommand CloseValidationStatusWindowCommand => new Command(async () =>
@@ -71,10 +71,14 @@ namespace RoteirosMaui.MVVM.ViewsModels
                 errors.Add("Confirm Password is empty");
             }
 
-            //Temos de verificar na DB da API se realmente existe alguem com esse email 
-            var userApiList = await App.ConnectionApi.utilizadorConnectionApi.GetItems("Email", this.Email);
+            List<Utilizador> userApiList = null;
 
-
+            if (isValid)
+            {
+                //Temos de verificar na DB da API se realmente existe alguem com esse email 
+                 userApiList = await App.ConnectionApi.utilizadorConnectionApi.GetItems("Email", this.Email);
+            }
+            
             if (userApiList != null)
             {
                 if (userApiList.Count == 0)
@@ -95,7 +99,18 @@ namespace RoteirosMaui.MVVM.ViewsModels
 
                         if (isValid)
                         {
-                            //AQUI IREMOS CRIAR O UTILIZADOR
+                            if(await App.ConnectionApi.utilizadorConnectionApi.SaveItem(newUser))
+                            {
+
+                                App.UserManager.SetUser(newUser);
+                                await Shell.Current.GoToAsync($"///Authentication");
+                            }
+                            else
+                            {
+                                isValid = false;
+                                errors.Add("There was an error creating the account pls try again!");
+
+                            }
 
                         }
                     }
@@ -107,7 +122,7 @@ namespace RoteirosMaui.MVVM.ViewsModels
                 }
                 else
                 {
-
+                    
                     isValid = false;
                     errors.Add("There is already an account with the same Email please try with another one");
                 }

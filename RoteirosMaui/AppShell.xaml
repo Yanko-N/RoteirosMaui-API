@@ -6,15 +6,31 @@
     xmlns:local="clr-namespace:RoteirosMaui"
     xmlns:Views="clr-namespace:RoteirosMaui.MVVM.Views"
     Shell.FlyoutBehavior="Flyout"
-    Title="RoteirosMaui">
+    Title="Roteiros Maui">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-    <ShellContent
-        Title="Register"
-        ContentTemplate="{DataTemplate Views:RegisterPage}"
-        Route="Register" />
 
+
+
+    <FlyoutItem FlyoutItemIsVisible="False" Route="Loading">
+        <Views:LoadingPage/>
+    </FlyoutItem>
+
+
+    <ShellItem Route="Authentication" FlyoutItemIsVisible="False" >
+        <ShellContent Title="Login" Route="Login">
+            <Views:LoginPage />
+        </ShellContent>
+        <ShellContent Title="Register" Route="Register">
+            <Views:RegisterPage />
+        </ShellContent>
+    </ShellItem>
+    
+    <ShellContent Route="MainPage" Title="My Knifes">
+        <Views:MainMenuPage/>
+    </ShellContent>
+    <ShellContent Route="Profile" Title="My Profile">
+        <Views:UserProfilePage/>
+    </ShellContent>
+
+    
 </Shell>

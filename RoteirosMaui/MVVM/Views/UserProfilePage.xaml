@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoteirosMaui.MVVM.Views.UserProfilePage"
+             >
+
+    <ContentPage.Resources>
+        <Color x:Key="AlarmBackgroundColor" >
+            LightPink
+        </Color>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Frame BackgroundColor="{StaticResource AlarmBackgroundColor}" CornerRadius="5" Padding="10" IsVisible="{Binding IsValidationErrorVisible}">
+            <Grid ColumnDefinitions=".7*,.3*">
+                <Label Text="{Binding MessageStatus}" TextColor="Red" Grid.Column="0" />
+                <Button Text="Close" BackgroundColor="{StaticResource AlarmBackgroundColor}" 
+                     HorizontalOptions="End" Command="{Binding CloseValidationStatusWindowCommand}" 
+                     VerticalOptions="End" Grid.Column="1"/>
+            </Grid>
+        </Frame>
+
+        <Grid Padding="20" ColumnDefinitions=".3*,.7*">
+
+
+            <StackLayout Grid.Column="0"
+              HorizontalOptions="Center"
+              VerticalOptions="CenterAndExpand">
+                <Image Source="roteiros_maui.png"  
+                Aspect="AspectFit"/>
+
+
+            </StackLayout>
+
+            <Grid Grid.Column="1"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill"
+                     Padding="20"
+                  RowDefinitions="*,*">
+
+                <VerticalStackLayout
+                    Grid.Row="0"
+                    HorizontalOptions="Fill">
+
+                    <Entry 
+                        Text="{Binding User.Name}" 
+                        />
+                    <Entry 
+                        Text="{Binding User.Email}" 
+                        />
+                    <DatePicker
+                        Date="{Binding User.BirthDate}" />
+                    <Button Text="Update Info" 
+                            Command="{Binding UpdateInfoCommand}" 
+                            HorizontalOptions="Center"
+                            Padding="15"/>
+
+                    <Button Text="LOG OUT" 
+                            Command="{Binding LogOutCommand}" 
+                            HorizontalOptions="Center"
+                            Padding="15"/>
+
+                </VerticalStackLayout>
+                <Frame Grid.Row="1">
+                    <VerticalStackLayout
+                        HorizontalOptions="Fill">
+                        <Entry 
+                            Text="{Binding NewPassword}" 
+                            Placeholder="New Password" 
+                            IsPassword="True"
+                            />
+                        <Entry 
+                            Text="{Binding ConfirmNewPassword}" 
+                            Placeholder="Confirm New Password" 
+                            IsPassword="True"
+
+                            />
+                        <Button Text="Update Password" 
+                                Command="{Binding UpdatePassword}"
+                                HorizontalOptions="Center"
+                                Padding="15"/>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+
+            </Grid>
+
+
+
+        </Grid>
+    </StackLayout>
+</ContentPage>

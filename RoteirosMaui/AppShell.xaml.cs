@@ -6,13 +6,20 @@ namespace RoteirosMaui
     {
         public AppShell()
         {
-            CreateRoutes();
+            
             InitializeComponent();
+
+            CreateRoutes();
         }
 
         void CreateRoutes()
         {
-            Routing.RegisterRoute("registerPage", typeof(RegisterPage));
+            
+            
+           
+
         }
+
+        
     }
 }

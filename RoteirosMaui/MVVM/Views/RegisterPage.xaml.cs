@@ -9,4 +9,12 @@ public partial class RegisterPage : ContentPage
 		InitializeComponent();
 		BindingContext = new RegisterViewModel();
 	}
+
+    protected async override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+        BindingContext = new RegisterViewModel();
+
+    }
+
 }
